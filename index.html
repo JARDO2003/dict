@@ -152,7 +152,7 @@
             const userInput = document.getElementById("userInput").value.trim().toLowerCase();
             if (userInput) {
                 displayMessage(userInput, "user");
-                const definition = dictionary[userInput] || "Désolé, je ne connais pas ce mot.";
+                const definition = dictionary[userInput] || "Oups, désolé veillez entrée un mot précis en rapport avec le domaine de la science économique.";
                 displayMessage(definition, "assistant");
                 document.getElementById("userInput").value = "";
             }
