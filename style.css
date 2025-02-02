@@ -4,33 +4,47 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #343541;
     color: white;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Conteneur principal */
 .chat-container {
+    width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     padding: 20px;
+    height: calc(100vh - 80px); /* Ajustement pour éviter le chevauchement avec l'input */
 }
 
+/* En-tête */
 .chat-header {
     text-align: center;
     padding: 20px;
     border-bottom: 1px solid #565869;
 }
 
+/* Messages */
 .messages {
+    flex-grow: 1;
     padding: 20px 0;
-    max-height: 400px;
     overflow-y: auto;
     display: flex;
-    flex-direction: column-reverse; /* Permet d'afficher les nouveaux messages en haut */
+    flex-direction: column-reverse;
     align-items: flex-start;
+    max-height: calc(100vh - 160px); /* Ajustement dynamique */
 }
 
+/* Style des messages */
 .message {
     display: flex;
-    padding: 20px;
-    margin: 10px 0;
+    padding: 15px;
+    margin: 5px 0;
     border-radius: 5px;
 }
 
@@ -42,6 +56,7 @@ body {
     background-color: #343541;
 }
 
+/* Avatar */
 .avatar {
     width: 30px;
     height: 30px;
@@ -62,6 +77,7 @@ body {
     flex: 1;
 }
 
+/* Zone d'entrée */
 .input-container {
     position: fixed;
     bottom: 0;
@@ -70,14 +86,18 @@ body {
     padding: 20px;
     background-color: #343541;
     border-top: 1px solid #565869;
+    display: flex;
+    justify-content: center;
 }
 
+/* Boîte de saisie */
 .input-box {
+    width: 100%;
     max-width: 800px;
-    margin: 0 auto;
     position: relative;
 }
 
+/* Champ de saisie */
 input {
     width: 100%;
     padding: 15px;
@@ -93,6 +113,7 @@ input:focus {
     border-color: #10a37f;
 }
 
+/* Bouton d'envoi */
 button {
     position: absolute;
     right: 10px;
@@ -104,15 +125,6 @@ button {
     cursor: pointer;
 }
 
-.bot-name {
-    font-weight: bold;
-    color: #10a37f;
-}
-
-.user-name {
-    font-weight: bold;
-    color: #555;
-}
 /* Adaptation pour mobile */
 @media (max-width: 768px) {
     .chat-container {
@@ -129,4 +141,3 @@ button {
         padding: 15px;
     }
 }
-
