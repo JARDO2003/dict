@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARCIO GPT</title>
+    <title>MARCIO-GPT 1.0</title>
     <style>
         body {
             margin: 0;
@@ -152,7 +152,7 @@
             const userInput = document.getElementById("userInput").value.trim().toLowerCase();
             if (userInput) {
                 displayMessage(userInput, "user");
-                const definition = dictionary[userInput] || "Oups, désolé veillez entrée un mot précis en rapport avec le domaine de la science économique.";
+                const definition = dictionary[userInput] || "Oups, désolé veillez entrée un mot précis en rapport avec le domaine de la science économique, Exemple:économie";
                 displayMessage(definition, "assistant");
                 document.getElementById("userInput").value = "";
             }
