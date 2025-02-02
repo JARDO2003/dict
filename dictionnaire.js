@@ -2889,4 +2889,9 @@ const dictionary = {
 "norbert": "Mr MANPKLIN NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
 "MANPKLIN": "Mr NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
 "djinan": "Mr OBOU CYRIL L'ETUDIANT LE PLUS BRILLANT de l'utt loko",
+    "vente": "échange d'un bien contre de l'argent",
+    "apport": "consiste dans le transfert du patrimoine de l'apporteur a celui de la personne qui est appelée a fournir la prestation attendue",
+    "achat": "acquisition de tout ce qui est mis en vente",
+    "mathieu": "ANDRIN MATHIEU le plus intélligent des étudiants de la promotion 2023-2024, de son vrai nom MATHIEU il est aussi connu le plus grand géreur de marasse",
+    
 }
