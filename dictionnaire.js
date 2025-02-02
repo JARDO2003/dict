@@ -2886,7 +2886,7 @@ const dictionary = {
     
 "tva sur achat": "Montant de la taxe sur la valeur ajoutée payée par l'entreprise lors de l'acquisition de biens ou services, que l'entreprise peut récupérer sous certaines conditions.",
     "tu connais norbert?": "Mr MANPKLIN NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
-" norbert": "Mr MANPKLIN NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
+"norbert": "Mr MANPKLIN NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
 "MANPKLIN": "Mr NORBERT, mathématiciens chercheurs, professeurs a l'utt loko.",
 "djinan": "Mr OBOU CYRIL L'ETUDIANT LE PLUS BRILLANT de l'utt loko",
 }
