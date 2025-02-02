@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MARCIO GPT</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Fond sombre */
+            color: #ddd;
+            background-image: url('image/WhatsApp\ Image\ 2025-02-02\ à\ 03.07.02_01806dba.jpg'); /* Ajoute ici ton image de fond */
+            background-size: cover; /* L'image couvre toute la surface */
+            background-position: center; /* Centre l'image */
+            background-attachment: fixed; /* L'image reste fixe lors du défilement */
+        }
+
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(31, 31, 31, 0.8); /* Fond légèrement opaque pour le chat */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 10px;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .message {
+            max-width: 70%;
+            display: flex;
+            align-items: flex-start;
+            border-radius: 10px;
+            padding: 12px 15px;
+            background-color: #333; /* Couleur de fond pour les messages */
+        }
+
+        .assistant {
+            background-color: #2b2b2b; /* Couleur pour les réponses du bot */
+            margin-left: auto;
+            border-radius: 10px 10px 0 10px;
+            color: #f0f0f0;
+        }
+
+        .user {
+            background-color: #444; /* Couleur pour les messages de l'utilisateur */
+            margin-right: auto;
+            border-radius: 10px 10px 10px 0;
+            border: 1px solid #555;
+            color: #f0f0f0;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #6200ea; /* Couleur vive pour les avatars */
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .user .avatar {
+            background-color: #03dac5; /* Couleur différente pour l'utilisateur */
+        }
+
+        .message-content {
+            flex: 1;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .input-container {
+            padding: 15px;
+            border-top: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #1f1f1f;
+        }
+
+        .input-box {
+            width: 80%;
+            display: flex;
+            align-items: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 1px solid #555;
+            background-color: #333;
+            color: #ddd;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6200ea; /* Accent color when focus */
+        }
+
+        button {
+            background-color: #6200ea;
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3700b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>MARCIO GPT</h2>
+        </div>
+        <div class="messages" id="messages">
+            <div class="message assistant">
+                <div class="avatar">M</div>
+                <div class="message-content">
+                    Bonjour ! Je suis MARCIO GPT. Comment puis-je vous aider aujourd'hui ?
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="input-box">
+            <input type="text" id="userInput" placeholder="Tapez un message..." onkeyup="handleKeyPress(event)">
+            <button onclick="getDefinition()">➤</button>
+        </div>
+    </div>
+
+    <script src="dictionnaire.js"></script>
+    <script>
+        // Fonction pour afficher un message dans la chat-box
+        function displayMessage(message, sender) {
+            const messagesContainer = document.getElementById("messages");
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message");
+            messageElement.classList.add(sender === "user" ? "user" : "assistant");
+
+            const avatarElement = document.createElement("div");
+            avatarElement.classList.add("avatar");
+            avatarElement.textContent = sender === "user" ? "U" : "M";
+
+            const messageContentElement = document.createElement("div");
+            messageContentElement.classList.add("message-content");
+            messageContentElement.textContent = message;
+
+            messageElement.appendChild(avatarElement);
+            messageElement.appendChild(messageContentElement);
+            messagesContainer.appendChild(messageElement);
+
+            // Scroll vers le bas
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Fonction pour rechercher un mot dans le dictionnaire
+        function getDefinition() {
+            const userInput = document.getElementById("userInput").value.trim().toLowerCase();
+            if (userInput) {
+                // Afficher le message de l'utilisateur
+                displayMessage(userInput, "user");
+
+                // Rechercher un mot dans la phrase et afficher la définition
+                const words = userInput.split(" ");
+                let foundDefinition = false;
+
+                words.forEach(word => {
+                    // Vérifier si le mot existe dans le dictionnaire
+                    if (dictionary[word]) {
+                        // Si trouvé, afficher la définition
+                        displayMessage(dictionary[word], "assistant");
+                        foundDefinition = true;
+                    }
+                });
+
+                // Si aucun mot trouvé, afficher un message d'erreur
+                if (!foundDefinition) {
+                    displayMessage(`Désolé, je ne connais pas ces mots.`, "assistant");
+                }
+
+                // Effacer le champ de saisie
+                document.getElementById("userInput").value = "";
+            }
+        }
+
+        // Fonction pour activer la recherche avec la touche Entrée
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                getDefinition();
+            }
+        }
+    </script>
+</body>
+</html>
+<script>
+    // Empêcher la capture d'écran via les raccourcis clavier
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "PrintScreen" || (event.ctrlKey && event.key === "p")) {
+            event.preventDefault();
+            alert("Capture d'écran interdite !");
+        }
+    });
+
+    // Empêcher la capture d'écran via la touche PrintScreen en vidant le presse-papiers
+    document.addEventListener("keyup", function (event) {
+        if (event.key === "PrintScreen") {
+            navigator.clipboard.writeText("");
+            alert("Capture d'écran interdite !");
+        }
+    });
+
+    // Sur mobile, détecter les changements de visibilité pour bloquer les captures
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            document.body.style.display = "none"; // Cache tout l'écran
+            setTimeout(() => {
+                document.body.style.display = "block"; // Réaffiche après un moment
+            }, 1000);
+        }
+    });
+</script>
